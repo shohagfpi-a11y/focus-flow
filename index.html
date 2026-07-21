@@ -38,6 +38,12 @@
     width: 100%;
     text-align: center;
   }
+  #siteLogo {
+    display: block;
+    margin: 0 auto 8px;
+    height: 48px;
+    width: auto;
+  }
   header h1 {
     font-size: 1.4rem;
     margin: 0 0 4px;
@@ -156,11 +162,18 @@
   .btn:disabled { opacity: 0.4; cursor: default; }
 
   .tasks {
-    width: 100%;
+    width: 360px;
+    position: fixed;
+    top: 24px;
+    right: 24px;
     background: var(--panel);
     border: 1px solid #2c3049;
-    border-radius: 16px;
-    padding: 16px;
+    border-radius: 12px;
+    padding: 12px;
+    max-height: 72vh;
+    overflow: hidden;
+    z-index: 50;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.45);
   }
   .tasks h2 {
     font-size: 0.85rem;
@@ -198,7 +211,7 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
-    max-height: 260px;
+    max-height: calc(72vh - 160px);
     overflow-y: auto;
   }
   .task-item {
@@ -257,11 +270,25 @@
     100% { transform: scale(1); opacity: 1; }
   }
   .celebrate { animation: burst 0.4s ease; }
+
+  @media (max-width: 700px) {
+    .tasks {
+      position: static;
+      width: 100%;
+      max-height: 260px;
+      margin-top: 12px;
+      box-shadow: none;
+      border-radius: 12px;
+    }
+    .task-list { max-height: 200px; }
+    .app { padding-top: 20px; }
+  }
 </style>
 </head>
 <body>
 <div class="app">
   <header>
+    <img id="siteLogo" src="Images/Final-Logo-color.png" alt="Focus Flow logo">
     <h1>Focus Flow</h1>
     <p>Pick a task, press start, get it done.</p>
     <div class="streak-row">
